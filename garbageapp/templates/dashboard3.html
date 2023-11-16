@@ -1,0 +1,99 @@
+{% extends 'index4.html' %}
+{% load static %}
+{% block body %}
+
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Welcome {{ request.user.first_name }} {{ request.user.last_name }}</h3>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin transparent">
+              <div class="row">
+
+                <div class="col-md-4 mb-4 stretch-card transparent">
+                  <div class="card card-tale">
+                    <a class="nav-link" href="/drivercomplainlist/?action=All">
+                    <div class="card-body">
+                      <p class="mb-4"><h4 style="color:black">Total Assign Complain</p>
+                      <p class="fs-30 mb-2">{{assign.count}}</p></h4>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4 stretch-card transparent">
+                  <div class="card card-dark-blue">
+                    <a class="nav-link" href="/drivercomplainlist/?action=On%20The%20Way">
+                    <div class="card-body">
+                      <p class="mb-4"><h4 style="color:black">Inprogress Complain</p>
+                      <p class="fs-30 mb-2">{{inprogress.count}}</p></h4>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4 stretch-card transparent">
+                  <div class="card card-light-blue">
+                    <a class="nav-link" href="/drivercomplainlist/?action=Completed">
+                    <div class="card-body">
+                      <p class="mb-4"><h4 style="color:black">Completed Complain</p>
+                      <p class="fs-30 mb-2">{{completeddriver.count}}</p></h4>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4 stretch-card transparent">
+                  <div class="card card-tale">
+                    <a class="nav-link" href="/driverbinlist/?action=Total">
+                      <div class="card-body">
+                        <p class="mb-4"><h4 style="color:black">Total Assign Garbage Bin</p>
+                      <p class="fs-30 mb-2">{{assignbin.count}}</p></h4>
+                    </div>
+                      </a>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4 stretch-card transparent">
+                  <div class="card card-dark-blue">
+                     <a class="nav-link" href="/driverbinlist/?action=On%20The%20Way">
+                    <div class="card-body">
+                      <p class="mb-4"><h4 style="color:black">Inprogress</p>
+                      <p class="fs-30 mb-2">{{inprogressbin.count}}</p></h4>
+                    </div>
+                     </a>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4 stretch-card transparent">
+                  <div class="card card-light-blue">
+                     <a class="nav-link" href="/driverbinlist/?action=Completed">
+                    <div class="card-body">
+                      <p class="mb-4"><h4 style="color:black">Garbage cleaned</p>
+                      <p class="fs-30 mb-2">{{completeddriverbin.count}}</p></h4>
+                    </div>
+                     </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          </div>
+
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <script>document.write(new Date().getFullYear());</script>
+
+          </div>
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+             </div>
+        </footer>
+        <!-- partial -->
+      </div>
+
+{% endblock %}

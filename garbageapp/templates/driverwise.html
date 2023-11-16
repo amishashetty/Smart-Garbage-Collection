@@ -1,0 +1,109 @@
+{% extends 'index2.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block body %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 class="m-0">Driverwise Report</h2>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-default">
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="" method="get">
+
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <input type="date" class="form-control select2bs4" name="fromdate"
+                                           style="width: 100%;">
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>To Date</label>
+                                    <input type="date" class="form-control select2bs4" name="todate"
+                                           style="width: 100%;">
+
+                                </div>
+
+                                <div>
+                                    <button class="btn btn-primary py-1 px-3" type="submit">Submit</button>
+                                </div>
+
+
+                            </form>
+                        </div>
+
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-body -->
+
+                </div>
+            </div>
+            {% if data %}
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <div class="card">
+
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Employee Id</th>
+                                            <th>Name</th>
+                                            <th>Work Assign</th>
+                                            <th>Completed Work</th>
+                                            <th>Remaining Work</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in data %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.user.username}}</td>
+                                            <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                                            <td>{% totalwork request i.id '0' %}</td>
+                                            <td>{% totalwork request i.id '1' %}</td>
+                                            <td>{% totalwork request i.id '2' %}</td>
+
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+{% elif data2 %}
+
+<h3 align="center">Data not found</h3>
+
+{% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}

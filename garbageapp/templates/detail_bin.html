@@ -1,0 +1,111 @@
+{% extends 'index4.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Complain Detail Bin</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Complain Detail Bin</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+              <div class="card">
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <tr>
+                    <th>Name</th>
+                    <td>{{data.register.user.first_name}} {{data.register.user.last_name}}</td>
+                     <th>Email</th>
+                    <td>{{data.register.user.email}}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Mobile Number</th>
+                    <td>{{data.register.contactnumber}}</td>
+                    <th>Address of Garbage</th>
+                    <td>{{data.address}}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Area</th>
+                    <td>{{data.area}}</td>
+                    <th>Locality</th>
+                    <td>{{data.locality}}</td>
+                  </tr>
+                  <tr>
+                    <th>Landmark</th>
+                    <td>{{data.landmark}}</td>
+                    <th>Note</th>
+                    <td>{{data.note}}</td>
+                  </tr>
+                  <tr>
+                    <th>Image</th>
+                    <td><img src="{{data.photo.url}}" ></td>
+                    <th>Note</th>
+                    <td>{{data.note}}</td>
+                  </tr>
+                  <tr>
+                    <th>Assign To</th>
+                    <td>{{data.assign}}</td>
+                    <th>Complain Date</th>
+                    <td>{{data.creationdate}}</td>
+                  </tr>
+                  <tr>
+                    <th>Complain Final Status</th>
+                    <td>{{data.area}}</td>
+                    <th>Remark</th>
+                    <td>{{data.locality}}</td>
+                  </tr>
+
+
+                </table>
+              </div>
+                <h2>Tracking History</h2>
+                <div class="card-body">
+                <table id="example" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Remark</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in traking %}
+                  <tr>
+                    <td>{{i.remark}}</td>
+                      <td>{{i.status}}
+                    </td>
+                      <td>{{i.time}}
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+                </table>
+              </div>
+
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ </div>
+{% endblock %}

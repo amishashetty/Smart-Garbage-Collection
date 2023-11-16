@@ -1,0 +1,88 @@
+{% extends 'index2.html' %}
+{% load static %}
+{% block body %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+</style>
+
+
+<div class="col-md-6">
+
+
+<div class="container">
+
+    <h4 class="my-4">Search Complain</h4><hr>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <input type="text" style="width:100%;" class="form-control" id="exampleInputText1" placeholder="Search Complain Number" value="{{fromdate}}" name="fromdate">
+    </div>
+        <button type="submit" class="btn btn-primary">search</button>
+</form>
+
+{% if data %}
+<div class="col-md-8">
+<h4> all Complain related to search for '{{fromdate}}'</h4>
+    <table id="example" class="display" style="width:100%">
+                  <thead>
+                  <tr>
+                    <th #="col">#</th>
+                    <th Complain Number="col">Complain Number</th>
+                    <th Name="col">Name</th>
+                    <th Mobile="col">Mobile</th>
+                    <th Email="col"> Email</th>
+                    <th Status="col">Status</th>
+                    <th Action="col">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.complain}}</td>
+                      <td>{{i.register.user.username}}
+                    </td>
+                      <td>{{i.register.contactnumber}}
+                    </td>
+                    <td>{{i.register.user.email}}</td>
+                    <td>{{i.status}}</td>
+                      <td>
+
+
+                        <a href="{% url 'detail' i.id %}">
+                            <button type="button" class="btn btn-info">View</button>
+                        </a>
+
+                        <a href="{% url 'delete_complain' i.id %}" onclick="return confirm('Are you sure?')">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </a>
+
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+                </table>
+
+              <!-- /.card-body -->
+</div>
+
+ {% elif data2 %}
+
+<h4 align="center">Data not found</h4>
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

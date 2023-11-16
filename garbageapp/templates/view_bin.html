@@ -1,0 +1,85 @@
+{% extends 'index2.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Manage Bin</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Manage Bin</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+              <div class="card">
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Bin ID</th>
+                    <th>Area</th>
+                    <th>Locality</th>
+                    <th>Landmark</th>
+                    <th>Load Type</th>
+                    <th>Period of Cycle</th>
+                    <th>Bus Route Address</th>
+                    <th>Assign Driver</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.idname}}</td>
+                    <td>{{i.area}}</td>
+                      <td>{{i.locality}}
+                    </td>
+                      <td>{{i.landmark}}
+                    </td>
+                    <td>{{i.loadtype}}</td>
+                    <td>{{i.period}}</td>
+                    <td>{{i.bus}}</td>
+                    <td>{{i.driver.user.username}}</td>
+                      <td>
+                        <a href="{% url 'edit_bin' i.id %}">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </a>
+
+<!--                        <a href="{% url 'detail' i.id %}">-->
+<!--                            <button type="button" class="btn btn-info">View</button>-->
+<!--                        </a>-->
+                        <a href="{% url 'delete_bin' i.id %}" onclick="return confirm('Are you sure?')">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ </div>
+{% endblock %}

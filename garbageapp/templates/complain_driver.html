@@ -1,0 +1,73 @@
+{% extends 'index4.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">{{request.GET.action}} Complain</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+              <div class="card">
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Complain Number</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.complain}}</td>
+                      <td>{{i.register.user.username}} {{i.register.user.last_name}}</td>
+                      <td>{{i.register.contactnumber}}
+                    </td>
+                    <td>{{i.register.user.email}}</td>
+                    <td>{{i.status}}</td>
+                      <td>
+
+
+                        <a href="{% url 'complain_detail_driver' i.id %}">
+                            <button type="button" class="btn btn-info">View</button>
+                        </a>
+
+                        <a href="{% url 'complain_detail_driver' i.id %}" onclick="return confirm('Are you sure?')">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </a>
+
+
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ </div>
+{% endblock %}

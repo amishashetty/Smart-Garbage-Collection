@@ -1,0 +1,111 @@
+{% extends 'index2.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h2 class="m-0">B/W Dates Lodged Complain</h2>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+<section class="content">
+      <div class="container-fluid">
+        <div class="card card-default">
+
+          <!-- /.card-header -->
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                  <form action="" method="post">
+                      {% csrf_token %}
+                <div class="form-group">
+                  <label>From Date</label>
+                    <input type="date" class="form-control select2bs4" name="fromdate" style="width: 100%;" required>
+
+                  </div>
+
+
+
+                <div class="form-group">
+                  <label>To Date</label>
+                  <input type="date" class="form-control select2bs4" name="todate" style="width: 100%;" required>
+
+                  </div>
+
+                   <div>
+                     <button class="btn btn-primary py-1 px-3" type="submit">Submit</button>
+                   </div>
+
+
+                    </form>
+            </div>
+
+            <!-- /.row -->
+          </div>
+          <!-- /.card-body -->
+
+        </div>
+      </div>
+{% if data %}
+
+      <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+<div class="card">
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Complain</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Status</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.complain}}</td>
+                      <td>{{i.register.user.first_name}} {{i.register.user.last_name}}
+                    </td>
+                      <td>{{i.register.contactnumber}}
+                    </td>
+                    <td>{{i.register.user.email}}</td>
+                    <td>{{i.status}}</td>
+                    <td>{{i.creationdate}}</td>
+
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+</div>
+{% elif data2 %}
+
+<h3 align="center">Data not found</h3>
+
+{% endif %}
+</section>
+</div>
+{% endblock %}

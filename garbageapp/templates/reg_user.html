@@ -1,0 +1,71 @@
+{% extends 'index2.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Registered User</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+<div class="card">
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                      <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Registration Date</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  {% for i in data %}
+                  <tr>
+                      <td>{{forloop.counter}}</td>
+                    <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                      <td>{{i.user.email}}
+                    </td>
+                      <td>{{i.contactnumber}}</td>
+                    <td>{{i.creationdate}}</td>
+
+                    <td>
+                         <a href="/admincomplainlist/?user={{i.user.id}}">
+                            <button type="button" class="btn btn-info">View Lodged Complain</button>
+                        </a>
+
+                        <a href="/delete_user/{{i.id}}/" onclick="return confirm('Are you sure?')">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ </div>
+{% endblock %}

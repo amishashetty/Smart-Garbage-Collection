@@ -1,0 +1,74 @@
+{% extends 'index2.html' %}
+{% block body %}
+
+<div class="container">
+    <h2 class="my-2 ">Search Bin Report</h2>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-2">
+    <label for="exampleInputText1" class="form-label">From Date</label>
+    <input type="date" class="form-control" id="exampleInputText" value="{{fromdate}}" name="fromdate" required>
+    </div>
+
+    <div class="mb-2">
+    <label for="exampleInputText1" class="form-label">To Date</label>
+    <input type="date" class="form-control" id="exampleInputText1" value="{{todate}}" name="todate" required>
+    </div>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+</br>
+
+{% if data %}
+<div class="container">
+<h4>View {% if request.GET.type %}{{request.GET.type}}{% elif request.GET.action %}{{request.GET.action}}{% else %}All{% endif %} Entry Details from "{{fromdate}}" to "{{todate}}"</h4>
+    <table id="example" class="table" style="width:100%">
+      <thead>
+        <tr>
+        <th #="col">S.No</th>
+        <th ID Name="col">ID Name</th>
+        <th Area="col">Area</th>
+        <th Locality="col">Locality</th>
+        <th Landmark="col">Landmark</th>
+        <th Load Type="col">Load Type</th>
+        <th Period of Cycle="col">Period of Cycle</th>
+        <th Bus Route Address="col">Bus Route Address</th>
+        <th Assign Driver="col">Assign Driver</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.idname}}</td>
+                    <td>{{i.area}}</td>
+                      <td>{{i.locality}}
+                    </td>
+                      <td>{{i.landmark}}
+                    </td>
+                    <td>{{i.loadtype}}</td>
+                    <td>{{i.period}}</td>
+                    <td>{{i.bus}}</td>
+                    <td>{{i.driver.user.username}}</td>
+                  </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% elif data2 %}
+    <h4 align="center">Data not found</h4>
+{% endif %}
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,70 @@
+{% extends 'index2.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Manage Driver</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+              <div class="card">
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Employee Id</th>
+                    <th>Name</th>
+                    <th>Mobile Number</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.user.username }}</td>
+                    <td>{{i.user.first_name}}</td>
+                      <td>{{i.mobile}}
+                    <td>{{i.user.email}}</td>
+                      <td>
+                        <a href="{% url 'edit_driver' i.id %}">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </a>
+
+<!--                        <a href="{% url 'detail' i.id %}">-->
+<!--                            <button type="button" class="btn btn-info">View</button>-->
+<!--                        </a>-->
+                        <a href="{% url 'delete_driver' i.id %}" onclick="return confirm('Are you sure?')">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </a>
+
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ </div>
+{% endblock %}
